@@ -263,8 +263,11 @@ class LinkedList {
     let currentNode = this.head;
 
     while (currentNode) {
-      if (currentNode.value[0] === index) {
+      if (currentNode.value[0] === index && previousNode) {
         previousNode.nextNode = currentNode.nextNode;
+        return;
+      } else if (currentNode.value[0] === index && !previousNode) {
+        this.head = currentNode.nextNode;
         return;
       }
 
@@ -273,3 +276,15 @@ class LinkedList {
     }
   }
 }
+
+let numbers = new HashMap();
+numbers.set(1, 1);
+numbers.set(3, 3);
+numbers.set(4, 4);
+numbers.set(5, 5);
+numbers.set(1, 1);
+numbers.set(1, 1);
+numbers.set(2, 2);
+numbers.set(4, 4);
+numbers.set(4, 4);
+console.log(numbers.entries());
